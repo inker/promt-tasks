@@ -85,6 +85,7 @@
     <ClInclude Include="WordGenerator.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ArithmParser.cpp" />
     <ClCompile Include="PromtTasks.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
