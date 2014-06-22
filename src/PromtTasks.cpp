@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "WordGenerator.h"
 #include "ArithmParser.h"
+#include "ProperNounsExtractor.h"
 #include <assert.h>
 
 using namespace std;
@@ -34,13 +35,18 @@ void task2() {
 	assert(ArithmExpr("-23*45+(-55+36)-5*(56*(-4*1*(3*12)))-(-35+(2*(-65)+22*(-6))*(65-70*(33-22))*(75-50)+3)*-8+18*0*(-5)") == 36981010);
 	cin.clear();
 	cin.ignore(cin.rdbuf()->in_avail());
-	while (true) {
-		cout << "Input the arithmetic expression to calculate:" << endl;
+	for(;;) {
+		cout << "Input the arithmetic expression to calculate or type \"exit\" to exit.:" << endl;
 		string str;
 		getline(cin, str);
+		if (str == "exit") break;
 		ArithmExpr ae = str;
 		cout << " = " << ae << endl;
 	}
+}
+
+void task3() {
+	ProperNouns pn = "This is just a text container Some Proper Nouns. And this is Another one. And the Next One.";
 }
 
 int _tmain(int argc, _TCHAR* argv[]) {

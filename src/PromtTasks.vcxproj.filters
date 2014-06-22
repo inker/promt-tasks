@@ -30,7 +30,7 @@
     <ClInclude Include="ArithmParser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PersonalNounsExtractor.h">
+    <ClInclude Include="ProperNounsExtractor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
