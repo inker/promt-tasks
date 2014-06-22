@@ -22,6 +22,7 @@ void task1() {
 }
 
 void task2() {
+	cout << endl;
 	assert(ArithmExpr("(5") == 5);
 	assert(ArithmExpr("(((-1") == -1);
 	assert(ArithmExpr("0") == 0);
@@ -31,7 +32,6 @@ void task2() {
 	assert(ArithmExpr("-(-35+(2*(-65)+22*(-6))*(65-70*(33-22))*(75-50)+3)") == -4617718);
 	assert(ArithmExpr("-23*45+(-55+36)-5*-(-35+(2*(-65)+22*(-6))*(65-70*(33-22))*(75-50)+3)*-8+18*0*(-5)") == -184709774);
 	assert(ArithmExpr("-23*45+(-55+36)-5*(56*(-4*1*(3*12)))-(-35+(2*(-65)+22*(-6))*(65-70*(33-22))*(75-50)+3)*-8+18*0*(-5)") == 36981010);
-	cout << endl;
 	cin.clear();
 	cin.ignore(cin.rdbuf()->in_avail());
 	while (true) {

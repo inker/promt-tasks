@@ -103,10 +103,10 @@ private:
 		try {
 			if (brackets) throw std::runtime_error("Brackets do not match.");
 		} catch (std::exception& e) {
-			std::cout << e.what() << std::endl;
+			std::cout << e.what();
 			if (brackets > 0) {
 				while (brackets--) tokens.push_back(INT_MIN + 1);
-				std::cout << std::endl << "Additional brackets were appended" << std::endl;
+				std::cout << " Additional brackets were appended" << std::endl;
 			} else std::terminate();
 		}
 		if (state < 4) {
