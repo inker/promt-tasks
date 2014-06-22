@@ -46,12 +46,17 @@ void task2() {
 }
 
 void task3() {
-	ProperNouns pn = "This is just a text container Some Proper Nouns. And this is Another one. And the Next One.";
+	cout << endl;
+	ProperNouns pn = "This is just a text container Some Proper Nouns. And this is Another one. And the Next One. First, Second, third, fourth, Fifth. And a wEiRdNoUn, AnOtHeRoNe.";
+	for (auto& word : pn.words) {
+		cout << word << endl;
+	}
 }
 
 int _tmain(int argc, _TCHAR* argv[]) {
 	task1();
 	task2();
+	task3();
 
 	return 0;
 }
