@@ -3,17 +3,17 @@
 
 using namespace std;
 
-void fill_operations_set(std::set<char>& operations) {
-	operations.insert('+');
-	operations.insert('-');
-	operations.insert('*');
-	operations.insert('/');
+void fill_operations_map(map<char, function<int(int, int)>>& operations) {
+	operations['+'] = [](int a, int b) { return a + b; };
+	operations['-'] = [](int a, int b) { return a - b; };
+	operations['*'] = [](int a, int b) { return a * b; };
+	operations['/'] = [](int a, int b) { return a / b; };
 }
 
 int ArithmExpr::calculate() {
 	list<int> expr = tokenize_and_check(data);
 	stack<list<int>::iterator> st;
-	for (list<int>::iterator it = expr.begin(); it != expr.end(); ++it) {
+	for (auto it = expr.begin(); it != expr.end(); ++it) {
 		int token = *it;
 		if (token == INT_MIN) {
 			st.push(it);
@@ -32,8 +32,7 @@ list<int> ArithmExpr::tokenize_and_check(const string& expr) const {
 	int state = 0;
 	int num = 0;
 	int brackets = 0;
-	for (string::const_iterator it = expr.begin(); it != expr.end(); ++it) {
-		char c = *it;
+	for (const char& c : expr) {
 		if (c == ' ') continue;
 		if ((state & 1) && operations.count(c)) {
 			if (state == 1 || state == 3) {
@@ -93,19 +92,11 @@ void ArithmExpr::calculate(list<int>& expr, const list<int>::iterator& start, li
 }
 
 void ArithmExpr::calculate(list<int>& expr, const list<int>::iterator& start, const list<int>::iterator& end, int s1, int s2) {
-	for (list<int>::iterator it = start; it != end; ++it) {
+	for (auto it = start; it != end; ++it) {
 		int token = *it;
 		if (token == s1 || token == s2) {
-			list<int>::iterator first_it = prev(it);
-			int res;
-			token += 40 - INT_MIN;
-			++it;
-			switch (token) {
-				case '+': res = *first_it + *it; break;
-				case '-': res = *first_it - *it; break;
-				case '*': res = *first_it * *it; break;
-				case '/': res = *first_it / *it; break;
-			}
+			auto first_it = prev(it);
+			int res = operations[40 - INT_MIN + token](*first_it, *++it);
 			expr.erase(first_it, ++it);
 			expr.insert(it--, res);
 		}

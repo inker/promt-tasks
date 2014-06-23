@@ -40,14 +40,14 @@ string WordGenerator::generate_root(size_t min_length, size_t max_length) const 
 	int length = min_length + (rand() % (max_length - min_length + 1));
 	string root;
 	root.resize(length);
-	for (string::iterator it = root.begin(); it != root.end(); ++it) {
-		*it = *next(alphabet.begin(), rand() % alphabet.size());
+	for (auto& c : root) {
+		c = *next(alphabet.begin(), rand() % alphabet.size());
 	}
 	return root;
 }
 
 string WordGenerator::generate_affixes(affix_type type, size_t min, size_t max) const {
-	const set<string>& affix_set = (type == PREFIX ? prefixes : suffixes);
+	auto& affix_set = (type == PREFIX ? prefixes : suffixes);
 	if (max < min) swap(min, max);
 	int length = min + (rand() % (max - min + 1));;
 	string affixes;

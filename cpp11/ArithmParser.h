@@ -5,26 +5,22 @@
 #include <iostream>
 #include <sstream>
 #include <functional>
-#include <set>
+#include <map>
 #include <vector>
 
-void fill_operations_set(std::set<char>& operations);
+void fill_operations_map(std::map<char, std::function<int(int, int)>>& operations);
 
 class ArithmExpr {
 	std::string data;
 	int calculated_result;
 	bool is_calculated;
-	std::set<char> operations;
+	std::map<char, std::function<int(int, int)>> operations;
 
 public:
-	ArithmExpr() {
-		fill_operations_set(operations);
-	}
+	ArithmExpr() : ArithmExpr(std::string()) {}
 	
 	ArithmExpr(const std::string& expr) : is_calculated(false), data(expr) {
-		is_calculated = false;
-		data = expr;
-		fill_operations_set(operations);
+		fill_operations_map(operations);
 	}
 
 	ArithmExpr& operator=(const char* expr) {

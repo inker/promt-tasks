@@ -11,7 +11,7 @@ using namespace std;
 
 void task1() {
 	srand(time(0));
-	WordGenerator wg ("prefix.txt", "suffix.txt", "alphabet.txt");
+	WordGenerator wg = { "prefix.txt", "suffix.txt", "alphabet.txt" };
 	int n = -1;
 	cout << "Input the number of words to generate: ";
 	for (;;) {
@@ -47,9 +47,9 @@ void task2() {
 
 void task3() {
 	cout << endl;
-	ProperNouns pn = "This is just a text containing some Proper Nouns. And this is Another one. And the Next One. First, Second, third, fourth, Fifth. And a wEiRdNoUn, AnOtHeRoNe.";
-	for (vector<string>::iterator it = pn.words.begin(); it != pn.words.end(); ++it) {
-		cout << *it << endl;
+	ProperNouns pn = "This is just a text container Some Proper Nouns. And this is Another one. And the Next One. First, Second, third, fourth, Fifth. And a wEiRdNoUn, AnOtHeRoNe.";
+	for (auto& word : pn.words) {
+		cout << word << endl;
 	}
 }
 
@@ -57,8 +57,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 	task1();
 	task2();
 	task3();
-	int z;
-	cin >> z;
+
 	return 0;
 }
 

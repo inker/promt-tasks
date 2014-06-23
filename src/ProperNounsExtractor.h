@@ -3,6 +3,7 @@
 #include <vector>
 #include <regex>
 #include <iostream>
+#include <cctype>
 
 class ProperNouns {
 
@@ -11,10 +12,29 @@ public:
 	std::vector<std::string> words;
 
 	ProperNouns(std::string text) {
-		std::regex re("\\b[A-Z]([A-Za-z]|\\d)*");
-		std::smatch m;
-		std::regex_token_iterator<std::string::iterator> rend, it(text.begin(), text.end(), re);
-		words = { it, rend };
+		bool proper = false;
+		bool prev_non_alnum = true;
+		std::string word;
+		for (std::string::iterator it = text.begin(); it != text.end(); ++it) {
+			char c = *it;
+			if (std::isalnum(c)) {
+				if (proper) {
+					word += c;
+				} else if (prev_non_alnum && c >= 'A' && c < 'Z') {
+					word += c;
+					proper = true;
+				}
+				prev_non_alnum = false;
+			} else {
+				if (proper) {
+					proper = false;
+					words.push_back(word);
+					word.clear();
+				}
+				prev_non_alnum = true;
+			}
+
+		}
 	}
 
 };
