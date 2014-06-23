@@ -11,11 +11,11 @@ public:
 	
 	std::vector<std::string> words;
 
-	ProperNouns(std::string text) {
+	ProperNouns(const std::string& text) {
 		bool proper = false;
 		bool prev_non_alnum = true;
 		std::string word;
-		for (std::string::iterator it = text.begin(); it != text.end(); ++it) {
+		for (std::string::const_iterator it = text.begin(); it != text.end(); ++it) {
 			char c = *it;
 			if (std::isalnum(c)) {
 				if (proper) {
